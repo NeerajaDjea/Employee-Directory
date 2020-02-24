@@ -24,7 +24,7 @@ export default function MaterialTableDemo() {
         // https://medium.com/javascript-in-plain-english/how-to-use-async-function-in-react-hook-useeffect-typescript-js-6204a788a435
         // Create an scoped async function in the hook
         async function getData() {
-            const url = "https://api.randomuser.me/?results=15";
+            const url = "https://api.randomuser.me/?results=5";
             const response = await fetch(url);
             const data = await response.json();
             console.log(data.results);
