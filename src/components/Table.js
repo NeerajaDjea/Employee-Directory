@@ -21,13 +21,17 @@ export default function MaterialTableDemo() {
     //const [data, setData] = React.useState([])
 
     React.useEffect(() => {
+
+    
         // https://medium.com/javascript-in-plain-english/how-to-use-async-function-in-react-hook-useeffect-typescript-js-6204a788a435
         // Create an scoped async function in the hook
         async function getData() {
+
             const url = "https://api.randomuser.me/?results=5";
             const response = await fetch(url);
             const data = await response.json();
             console.log(data.results);
+
             const people = data.results.map(person => {
                 return {
                     name: person.name.first,
@@ -36,13 +40,15 @@ export default function MaterialTableDemo() {
                     surname: person.name.last,
                     birthCountry: person.location.country,
                     age: person.dob.age,
-
-
                 }
+                
+
             })
+           
             console.log(people);
             setState({...state, data: people })
         }
+
         // Execute the created function directly
         getData();
     }, []);
