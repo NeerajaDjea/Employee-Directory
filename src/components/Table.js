@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import Icon from '@material-ui/core/Icon';
+
 
 import MaterialTable from 'material-table';
 // import Main from "./Main";
@@ -6,13 +8,14 @@ import MaterialTable from 'material-table';
 export default function MaterialTableDemo() {
     const [state, setState] = React.useState({
         columns: [
-
+            {title:"Picture", field:'thumbnail'},
             { title: 'Title', field: 'title' },
             { title: 'Name', field: 'name' },
             { title: 'Surname', field: 'surname' },
             { title: 'Email', field: 'email' },
             { title: 'Age', field: 'age', type: 'numeric' },
             { title: 'Country', field: 'birthCountry' },
+            
 
         ],
         data: [],
@@ -27,7 +30,7 @@ export default function MaterialTableDemo() {
         // Create an scoped async function in the hook
         async function getData() {
 
-            const url = "https://api.randomuser.me/?results=5";
+            const url = "https://api.randomuser.me/?results=25";
             const response = await fetch(url);
             const data = await response.json();
             console.log(data.results);
@@ -40,6 +43,8 @@ export default function MaterialTableDemo() {
                     surname: person.name.last,
                     birthCountry: person.location.country,
                     age: person.dob.age,
+                    thumbnail: <img
+                    src={person.picture.thumbnail}/>
                 }
                 
 
@@ -54,8 +59,10 @@ export default function MaterialTableDemo() {
     }, []);
 
 
-    return ( <
-        MaterialTable title = "Employee Details"
+    return (
+        
+        
+         < MaterialTable title = "Employee Details"
         columns = { state.columns }
         data = { state.data }
         editable = {
